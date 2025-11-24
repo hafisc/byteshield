@@ -1,145 +1,223 @@
-# 🛡️ ByteShield - System Cleaner & Virus Scanner
+<div align="center">
 
-**Aplikasi desktop Windows untuk membersihkan file sampah dan scan virus**
+# 🛡️ ByteShield
 
-Author: Hafis  
-Version: 1.0  
-Platform: Windows 10/11
+### *Your System's Best Friend* 💪
 
----
+[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/hafisc/byteshield)
+[![Python](https://img.shields.io/badge/python-3.7+-brightgreen.svg)](https://python.org)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-lightgrey.svg)](https://www.microsoft.com/windows)
+[![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
+[![Made with Love](https://img.shields.io/badge/made%20with-❤️-red.svg)](https://github.com/hafisc)
 
-## 📋 Fitur Utama
+**System Optimizer & Virus Scanner dengan UI Dark Mode yang Aesthetic** ✨
 
-✅ **Pembersihan File Sampah**
-- Membersihkan folder TEMP dan TMP
-- Membersihkan Windows\Temp
-- Membersihkan Windows\Prefetch
-- Log detail file yang dihapus
+[Features](#-fitur-utama) • [Installation](#-installation) • [Usage](#-cara-pakai) • [Screenshots](#-preview) • [Contributing](#-contributing)
 
-✅ **Windows Defender Quick Scan**
-- Menjalankan quick scan antivirus bawaan Windows
-- Deteksi otomatis lokasi MpCmdRun.exe
-- Status scan real-time
-
-✅ **Mode Gabungan**
-- Bersihkan + Scan dalam satu klik
-- Otomatis menjalankan kedua proses berurutan
-
-✅ **GUI Modern**
-- Antarmuka user-friendly dengan Tkinter
-- Log proses real-time dengan color coding
-- Progress bar untuk feedback visual
-- Threading untuk mencegah freeze
+</div>
 
 ---
 
-## 🚀 Cara Menggunakan
+## 🌟 Apa Sih ByteShield?
 
-### Opsi 1: Jalankan Script Python
+ByteShield adalah aplikasi **desktop cleaner & antivirus** untuk Windows yang didesain dengan tampilan **modern cyberpunk dark mode**. Cocok buat kamu yang pengen sistem tetap **clean, fast, and secure** tanpa ribet! 
+
+**No bloatware, no ads, just pure optimization** 🚀
+
+---
+
+## ✨ Fitur Utama
+
+### 🧹 **Bersihin Sampah**
+Hapus file cache/temp yang cuma buang-buang storage doang. Target:
+- `%TEMP%` - User temporary files
+- `C:\Windows\Temp` - System temp
+- `C:\Windows\Prefetch` - Prefetch cache
+- Dan masih banyak lagi!
+
+### 🔍 **Cek Virus**
+Quick scan pakai **Windows Defender** tanpa perlu buka Security Center. Tinggal klik, beres!
+
+### ⚡ **Gas Semuanya**
+One-click optimize: Clean + Scan sekaligus. Hemat waktu, efisien maksimal.
+
+### 💻 **System Info**
+Lihat detail sistem kamu dalam satu dashboard:
+- OS Version
+- CPU/Processor
+- RAM Usage
+- Disk Space
+
+### 🎨 **UI/UX Premium**
+- **Dark Mode Cyberpunk** theme
+- **Sidebar Navigation** yang sleek
+- **Terminal-style logs** dengan color coding
+- **Hover effects** yang smooth
+- **Auto system scan** pas pertama kali buka
+
+---
+
+## 🎯 Kenapa Harus ByteShield?
+
+| Feature | ByteShield | CCleaner | Windows Built-in |
+|---------|-----------|----------|------------------|
+| 🆓 Free | ✅ | ⚠️ Limited | ✅ |
+| 🎨 Modern UI | ✅ | ❌ | ❌ |
+| 🚀 Lightweight | ✅ | ❌ | ✅ |
+| 🔒 No Ads | ✅ | ❌ | ✅ |
+| 💾 One-Click Clean | ✅ | ✅ | ❌ |
+| 🔍 Integrated Scan | ✅ | ⚠️ Paid | ⚠️ Separate |
+
+---
+
+## 📦 Installation
+
+### Opsi 1: Download .EXE (Recommended)
+
+1. Download file `.exe` dari [Releases](https://github.com/hafisc/byteshield/releases)
+2. Jalankan `ByteShield.exe`
+3. Done! ✅
+
+> ⚠️ **Note**: Jalankan sebagai **Administrator** untuk hasil optimal
+
+### Opsi 2: Run from Source
 
 ```bash
+# Clone repository
+git clone https://github.com/hafisc/byteshield.git
+cd byteshield
+
+# Install dependencies (optional, untuk info sistem lebih detail)
+pip install psutil wmi
+
+# Run aplikasi
 python byteshield_gui.py
 ```
 
-> **Note**: Jalankan sebagai Administrator untuk hasil optimal
+### Opsi 3: Build Sendiri
 
-### Opsi 2: Build ke .EXE
-
-1. Install PyInstaller:
 ```bash
+# Install PyInstaller
 pip install pyinstaller
-```
 
-2. Build aplikasi (tanpa console):
-```bash
+# Build ke .exe
 pyinstaller --onefile --noconsole --name ByteShield byteshield_gui.py
-```
 
-3. File .exe akan ada di folder `dist/`
-
-4. (Opsional) Tambahkan icon custom:
-```bash
-pyinstaller --onefile --noconsole --icon=icon.ico --name ByteShield byteshield_gui.py
+# File .exe ada di folder dist/
 ```
 
 ---
 
-## 📁 Folder yang Dibersihkan
+## � Cara Pakai
 
-ByteShield akan membersihkan folder-folder berikut:
-
-| Folder | Deskripsi |
-|--------|-----------|
-| `%TEMP%` | Folder temporary user |
-| `%TMP%` | Folder temporary sistem |
-| `C:\Windows\Temp` | Folder temporary Windows |
-| `C:\Windows\Prefetch` | File prefetch aplikasi |
-
----
-
-## 🎨 Screenshot GUI
-
-Aplikasi ini memiliki:
-- **Header** dengan logo dan nama aplikasi
-- **3 Tombol utama** untuk fitur berbeda
-- **Progress bar** untuk visual feedback
-- **Log area** dengan color coding:
-  - 🟢 **Hijau** = Informasi
-  - 🟡 **Kuning** = Warning
-  - 🔴 **Merah** = Error
-  - 🟢 **Hijau Bold** = Success
+1. **Buka ByteShield** (jalankan sebagai Admin)
+2. **Pilih fitur** di sidebar:
+   - 🧹 Bersihin Sampah
+   - 🔍 Cek Virus
+   - ⚡ Gas Semuanya (Clean + Scan)
+   - 💻 System Info (lihat detail sistem)
+3. **Watch the magic happen** di terminal output
+4. **Done!** Sistem kamu udah bersih ✨
 
 ---
 
-## ⚙️ Requirements
+## 📸 Preview
 
-- **Python**: 3.7 atau lebih baru
-- **OS**: Windows 10/11
-- **Library**: Hanya standard library (tkinter, os, shutil, subprocess, threading, pathlib)
-- **Admin Rights**: Direkomendasikan untuk pembersihan optimal
+> **Coming Soon**: Screenshots akan ditambahkan!
+
+**Features Overview:**
+- ✅ Sidebar Navigation
+- ✅ Terminal Output dengan color coding
+- ✅ System Info Dashboard
+- ✅ Progress bar untuk visual feedback
+- ✅ Auto system scan saat startup
 
 ---
 
-## 🔧 Troubleshooting
+## ⚙️ Tech Stack
+
+- **Language**: Python 3.7+
+- **GUI**: Tkinter (built-in)
+- **Platform**: Windows 10/11
+- **Dependencies**: 
+  - Standard library (tkinter, os, shutil, subprocess, threading)
+  - Optional: `psutil`, `wmi` (untuk system info lebih detail)
+
+---
+
+## 🐛 Troubleshooting
 
 ### Windows Defender tidak ditemukan
-- Pastikan Windows Defender terinstall
-- Jalankan aplikasi sebagai Administrator
-- Cek apakah antivirus pihak ketiga tidak menonaktifkan Defender
+- Pastikan Windows Defender aktif
+- Jalankan aplikasi sebagai **Administrator**
+
+### System Info menampilkan "Unknown"
+Install library tambahan:
+```bash
+pip install psutil wmi
+```
 
 ### Beberapa file tidak terhapus
-- Normal jika beberapa file sedang digunakan oleh sistem
-- Tutup aplikasi yang sedang berjalan
-- Restart komputer lalu coba lagi
-
-### GUI freeze
-- Ini tidak seharusnya terjadi (sudah ada threading)
-- Jika terjadi, tunggu proses selesai atau restart aplikasi
+- Normal jika file sedang digunakan
+- Tutup aplikasi yang berjalan dulu
+- Restart PC lalu coba lagi
 
 ---
 
-## 📝 Catatan Penting
+## 🤝 Contributing
 
-⚠️ **Peringatan:**
-- Aplikasi ini akan **menghapus permanent** file di folder temp
-- Pastikan tidak ada file penting di folder tersebut
-- Selalu **backup** data penting sebelum membersihkan
+Pull requests are welcome! Untuk perubahan besar, silakan buka issue dulu buat diskusi.
 
-✅ **Tips:**
-- Jalankan pembersihan secara berkala (mingguan)
-- Tutup aplikasi lain sebelum membersihkan
-- Scanning virus akan lebih efektif jika Windows Defender up-to-date
+1. Fork this repo
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 Changelog
+
+### v2.0 (Current)
+- ✨ Redesign UI total dengan Dark Mode Cyberpunk theme
+- 🎨 Tambah Sidebar Navigation
+- 💻 Fitur System Info page yang bisa diklik
+- 🚀 Auto system scan saat startup
+- ⚡ Hover effects pada semua tombol
+- 📝 Terminal dengan color coding yang lebih jelas
+
+### v1.0
+- 🎉 Initial release
+- 🧹 Basic cleaning functionality
+- 🔍 Windows Defender integration
 
 ---
 
 ## 📄 License
 
-Free to use and modify.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Developer
+## 👨‍💻 Author
 
-Created with ❤️ by **Hafis**
+**Hafis**
 
-Jika ada bug atau saran, silakan hubungi developer!
+- GitHub: [@hafisc](https://github.com/hafisc)
+- Project Link: [https://github.com/hafisc/byteshield](https://github.com/hafisc/byteshield)
+
+---
+
+## 💖 Support
+
+Kalau projek ini berguna, kasih ⭐ dong! It means a lot 🙏
+
+---
+
+<div align="center">
+
+**Made with ❤️ and lots of ☕**
+
+*Stay Safe, Stay Clean!* 🛡️
+
+</div>
