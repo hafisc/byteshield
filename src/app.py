@@ -16,9 +16,11 @@ from src.views.clean_view import create_clean_view
 from src.views.scan_view import create_scan_view
 from src.views.optimize_view import create_optimize_view
 from src.views.sysinfo_view import create_sysinfo_view, update_sysinfo_display
+from src.views.uninstaller_view import create_uninstaller_view, populate_programs_tree
 from src.core.cleaner import clean_junk
 from src.core.scanner import run_defender_quick_scan
 from src.core.system_info import get_system_info
+from src.core.uninstaller import get_installed_programs, uninstall_program
 
 
 class ByteShieldApp(tk.Tk):
@@ -65,7 +67,8 @@ class ByteShieldApp(tk.Tk):
             'clean': self.show_clean_view,
             'scan': self.show_scan_view,
             'optimize': self.show_optimize_view,
-            'sysinfo': self.show_sysinfo_view
+            'sysinfo': self.show_sysinfo_view,
+            'uninstaller': self.show_uninstaller_view
         })
         
         # Content area
@@ -110,6 +113,14 @@ class ByteShieldApp(tk.Tk):
         self.sysinfo_view, self.sysinfo_container, self.sysinfo_placeholder = create_sysinfo_view(self.view_container)
         self.terminal_view, self.log_text = create_terminal_view(self.view_container)
         
+        # Uninstaller view
+        uninstaller_result = create_uninstaller_view(self.view_container, self.handle_uninstall)
+        self.uninstaller_view = uninstaller_result[0]
+        self.uninstaller_tree = uninstaller_result[1]
+        self.uninstaller_loading = uninstaller_result[2]
+        self.uninstaller_refresh_btn = uninstaller_result[3]
+        self.uninstaller_search_var = uninstaller_result[4]
+        
         # Show home by default
         self.home_view.pack(fill="both", expand=True)
         
@@ -121,7 +132,7 @@ class ByteShieldApp(tk.Tk):
     
     def _hide_all_views(self):
         """Hide semua views"""
-        for view in [self.home_view, self.clean_view, self.scan_view, self.optimize_view, self.sysinfo_view, self.terminal_view]:
+        for view in [self.home_view, self.clean_view, self.scan_view, self.optimize_view, self.sysinfo_view, self.terminal_view, self.uninstaller_view]:
             view.pack_forget()
     
     def show_clean_view(self):
@@ -160,6 +171,20 @@ class ByteShieldApp(tk.Tk):
         self.lbl_status.config(text="📟 Terminal Output")
         self._hide_all_views()
         self.terminal_view.pack(fill="both", expand=True)
+    
+    def show_uninstaller_view(self):
+        """Show uninstaller view"""
+        self.current_view = "uninstaller"
+        self.lbl_status.config(text="📦 Program Uninstaller")
+        self._hide_all_views()
+        self.uninstaller_view.pack(fill="both", expand=True)
+        
+        # Load programs if not loaded yet
+        if len(self.uninstaller_tree.get_children()) == 0:
+            self.load_installed_programs()
+        
+        # Wire up refresh button
+        self.uninstaller_refresh_btn.config(command=self.load_installed_programs)
     
     # ============ HELPER FUNCTIONS ============
     
@@ -312,3 +337,42 @@ class ByteShieldApp(tk.Tk):
         self.is_running = False
         self.set_status("✨ All Done! System Clean.")
         self.log("\nWaiting for next command...", "INFO")
+    
+    # ============ UNINSTALLER FUNCTIONS ============
+    
+    def load_installed_programs(self):
+        """Load installed programs in background thread"""
+        def load_thread():
+            self.after(0, lambda: self.log("Scanning installed programs...", "INFO"))
+            programs = get_installed_programs()
+            self.after(0, lambda: populate_programs_tree(self.uninstaller_tree, programs, self.uninstaller_loading))
+            self.after(0, lambda: self.log(f"Found {len(programs)} installed programs", "SUCCESS"))
+        
+        threading.Thread(target=load_thread, daemon=True).start()
+    
+    def handle_uninstall(self, item_id, tree):
+        """Handle uninstall button click"""
+        if self.is_running:
+            return
+        
+        # Get program info from tree
+        item = tree.item(item_id)
+        program_name = item['values'][0]
+        
+        # Get full program info (stored in tags)
+        # Note: This is a simplified version, need to store program dict properly
+        program_info = {
+            'name': item['values'][0],
+            'publisher': item['values'][1],
+            'version': item['values'][2],
+            'uninstall_string': ''  # Will need to get from original data
+        }
+        
+        # TODO: Store full program data properly to get uninstall_string
+        # For now, just show in terminal
+        self.show_terminal()
+        self.log(f"\nUninstalling: {program_name}", "HEADER")
+        self.log("This feature is being implemented...", "WARN")
+        
+        # Future: Actually run uninstall
+        # threading.Thread(target=lambda: uninstall_program(program_info, self.log), daemon=True).start()

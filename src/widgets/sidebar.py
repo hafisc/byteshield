@@ -60,6 +60,10 @@ class Sidebar:
         
         tk.Frame(menu_frame, bg=COLORS["divider"], height=1).pack(fill="x", pady=10)
         
+        # NEW: Uninstaller button
+        self.btn_uninstaller = ModernButton(menu_frame, text="Uninstaller", icon="📦", command=callbacks.get('uninstaller'), color=COLORS["sidebar"], hover_color=COLORS["accent"])
+        self.btn_uninstaller.pack(fill="x", pady=5)
+        
         self.btn_sysinfo = ModernButton(menu_frame, text="System Info", icon="💻", command=callbacks.get('sysinfo'), color=COLORS["sidebar"], hover_color=COLORS["accent"])
         self.btn_sysinfo.pack(fill="x", pady=5)
     

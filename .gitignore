@@ -1,7 +1,4 @@
-# pyinstaller
-dist/
-build/
-*.spec
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -10,3 +7,31 @@ __pycache__/
 *.so
 *.egg
 *.egg-info/
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/

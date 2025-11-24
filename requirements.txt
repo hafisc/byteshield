@@ -1,0 +1,10 @@
+# ByteShield Dependencies
+# Python 3.8+
+
+# Optional dependencies (for better system info)
+# These are OPTIONAL - app will work without them using fallbacks
+psutil>=5.9.0
+wmi>=1.5.1; sys_platform == 'win32'
+
+# Build tool (for creating EXE)
+pyinstaller>=6.0.0
